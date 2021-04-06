@@ -1,0 +1,5 @@
+## Interface: 30300
+## Title: Librarian
+## Notes: Library with utilities for WoW addons
+## Author: Ellanore
+Librarian.lua
