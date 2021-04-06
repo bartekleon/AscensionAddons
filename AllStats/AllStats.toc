@@ -1,0 +1,5 @@
+## Interface: 30300
+## Title: AllStats
+## Notes: Shows more stats in the character window
+## Author: Ellanore
+AllStats.xml
