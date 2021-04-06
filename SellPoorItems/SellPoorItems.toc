@@ -1,0 +1,6 @@
+## Interface: 30300
+## Title: SellPoorItems
+## Notes: Automaticaly sells all gray items when a merchant window is opened
+## Author: Ellanore
+## Dependencies: Librarian
+SellPoorItems.lua
