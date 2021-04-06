@@ -1,0 +1,281 @@
+<Ui xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.blizzard.com/wow/ui/">
+	<Script file="BuildBank.lua"/>
+	<Frame name="BuildBankFrame" parent="PaperDollFrame" toplevel="true">
+    <Size>
+      <AbsDimension x="175" y="500"/>
+    </Size>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="PaperDollFrame" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="290" y= "-33"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="BuildBankFrameTop" file="Interface\PaperDollInfoFrame\UI-Character-StatBackground">
+					<Size>
+						<AbsDimension x="175" y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="BuildBankFrame"/>
+					</Anchors>
+					<TexCoords left="0" right="0.8984375" top="0" bottom="0.125"/>
+				</Texture>
+				<Texture name="BuildBankFrameMiddle1" file="Interface\PaperDollInfoFrame\UI-Character-StatBackground">
+					<Size>
+						<AbsDimension x="175" y="53"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="BuildBankFrameTop" relativePoint="BOTTOMLEFT"/>
+					</Anchors>
+					<TexCoords left="0" right="0.8984375" top="0.125" bottom="0.1953125"/>
+				</Texture>
+				<Texture name="BuildBankFrameMiddle2" file="Interface\PaperDollInfoFrame\UI-Character-StatBackground">
+					<Size>
+						<AbsDimension x="175" y="53"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="BuildBankFrameMiddle1" relativePoint="BOTTOMLEFT"/>
+					</Anchors>
+					<TexCoords left="0" right="0.8984375" top="0.125" bottom="0.1953125"/>
+				</Texture>
+				<Texture name="BuildBankFrameMiddle3" file="Interface\PaperDollInfoFrame\UI-Character-StatBackground">
+					<Size>
+						<AbsDimension x="175" y="53"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="BuildBankFrameMiddle2" relativePoint="BOTTOMLEFT"/>
+					</Anchors>
+					<TexCoords left="0" right="0.8984375" top="0.125" bottom="0.1953125"/>
+				</Texture>
+				<Texture name="BuildBankFrameMiddle4" file="Interface\PaperDollInfoFrame\UI-Character-StatBackground">
+					<Size>
+						<AbsDimension x="175" y="53"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="BuildBankFrameMiddle3" relativePoint="BOTTOMLEFT"/>
+					</Anchors>
+					<TexCoords left="0" right="0.8984375" top="0.125" bottom="0.1953125"/>
+				</Texture>
+				<Texture name="BuildBankFrameMiddle5" file="Interface\PaperDollInfoFrame\UI-Character-StatBackground">
+					<Size>
+						<AbsDimension x="175" y="53"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="BuildBankFrameMiddle4" relativePoint="BOTTOMLEFT"/>
+					</Anchors>
+					<TexCoords left="0" right="0.8984375" top="0.125" bottom="0.1953125"/>
+				</Texture>
+				<Texture name="BuildBankFrameMiddle6" file="Interface\PaperDollInfoFrame\UI-Character-StatBackground">
+					<Size>
+						<AbsDimension x="175" y="53"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="BuildBankFrameMiddle5" relativePoint="BOTTOMLEFT"/>
+					</Anchors>
+					<TexCoords left="0" right="0.8984375" top="0.125" bottom="0.1953125"/>
+				</Texture>
+				<Texture name="BuildBankFrameMiddle7" file="Interface\PaperDollInfoFrame\UI-Character-StatBackground">
+					<Size>
+						<AbsDimension x="175" y="53"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="BuildBankFrameMiddle6" relativePoint="BOTTOMLEFT"/>
+					</Anchors>
+					<TexCoords left="0" right="0.8984375" top="0.125" bottom="0.1953125"/>
+				</Texture>
+				<Texture name="BuildBankFrameBottom" file="Interface\PaperDollInfoFrame\UI-Character-StatBackground">
+					<Size>
+						<AbsDimension x="175" y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="BuildBankFrameMiddle7" relativePoint="BOTTOMLEFT"/>
+					</Anchors>
+					<TexCoords left="0" right="0.8984375" top="0.484375" bottom="0.609375"/>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="BuildBankSave1Frame" parent="BuildBankFrame" inherits="UIPanelButtonTemplate" text="save 1">
+				<Size>
+					<AbsDimension x="165" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="5" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						BuildBankSave('set1');
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="BuildBankLoad1Frame" parent="BuildBankSave1Frame" inherits="UIPanelButtonTemplate" text="load 1">
+				<Size>
+					<AbsDimension x="165" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-30"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						BuildBankLoad('set1');
+					</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="BuildBankSave2Frame" parent="BuildBankLoad1Frame" inherits="UIPanelButtonTemplate" text="save 2">
+				<Size>
+					<AbsDimension x="165" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-40"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						BuildBankSave('set2');
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="BuildBankLoad2Frame" parent="BuildBankSave2Frame" inherits="UIPanelButtonTemplate" text="load 2">
+				<Size>
+					<AbsDimension x="165" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-30"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						BuildBankLoad('set2');
+					</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="BuildBankSave3Frame" parent="BuildBankLoad2Frame" inherits="UIPanelButtonTemplate" text="save 3">
+				<Size>
+					<AbsDimension x="165" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-40"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						BuildBankSave('set3');
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="BuildBankLoad3Frame" parent="BuildBankSave3Frame" inherits="UIPanelButtonTemplate" text="load 3">
+				<Size>
+					<AbsDimension x="165" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-30"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						BuildBankLoad('set3');
+					</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="BuildBankSave4Frame" parent="BuildBankLoad3Frame" inherits="UIPanelButtonTemplate" text="save 4">
+				<Size>
+					<AbsDimension x="165" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-40"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						BuildBankSave('set4');
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="BuildBankLoad4Frame" parent="BuildBankSave4Frame" inherits="UIPanelButtonTemplate" text="load 4">
+				<Size>
+					<AbsDimension x="165" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-30"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						BuildBankLoad('set4');
+					</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="BuildBankSave5Frame" parent="BuildBankLoad4Frame" inherits="UIPanelButtonTemplate" text="load 4">
+				<Size>
+					<AbsDimension x="165" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-40"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						BuildBankSave('set5');
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="BuildBankLoad5Frame" parent="BuildBankSave5Frame" inherits="UIPanelButtonTemplate" text="load 4">
+				<Size>
+					<AbsDimension x="165" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-30"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						BuildBankLoad('set5');
+					</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				BuildBankWelcome();
+			</OnLoad>
+		</Scripts>
+	</Frame>
+</Ui>
