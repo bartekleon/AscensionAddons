@@ -12,7 +12,7 @@ function Librarian(frame, name, Init)
         Init(frame, event)
       end
       initialised = true
-      print(name .. " loaded")
+      UTILS.Console.Primary(name .. " loaded")
     end
   end
 
@@ -22,9 +22,16 @@ function Librarian(frame, name, Init)
 end
 
 function LoadConfig(global, default)
-  if global == nil then
+  if _G[global] == nil then
+    _G[global] = default
     return default
   else
-    return global
+    return _G[global]
   end
+end
+
+-- /command arg1 arg2 arg3 ...
+-- _ _ arg1 arg2 arg3 ...
+function LoadCommand(command)
+  return string.find(command, "%s?(%w+)%s?(.*)")
 end

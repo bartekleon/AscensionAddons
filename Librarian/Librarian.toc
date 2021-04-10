@@ -2,4 +2,8 @@
 ## Title: Librarian
 ## Notes: Library with utilities for WoW addons
 ## Author: Ellanore
+
+Utils.lua
+Console.lua
+Inventory.lua
 Librarian.lua

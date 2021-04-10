@@ -1,0 +1,8 @@
+## Interface: 30300
+## Title: OverhaulUI
+## Notes: Shows more stats in the character window
+## Author: Ellanore
+## Dependencies: AIO_CLIENT, Librarian
+## SavedVariablesPerCharacter: BuildBank, BuildBankNames
+
+OverhaulUICharacter.xml

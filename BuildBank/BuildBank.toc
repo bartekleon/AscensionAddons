@@ -1,7 +1,0 @@
-## Interface: 30300
-## Title: BuildBank
-## Notes: Automaticaly changes items and stores them
-## Author: Ellanore
-## Dependencies: Librarian
-## SavedVariablesPerCharacter: BuildBank, BuildBankCC
-BuildBank.xml
