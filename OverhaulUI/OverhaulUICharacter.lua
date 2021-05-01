@@ -1,16 +1,14 @@
 local l = "Load from "
 local s = "Save to "
 
-BUILDBANK = {
-	DEFAULT_BANK = {set1 = {}, set2 = {}, set3 = {}, set4 = {}, set5 = {}, set6 = {}, set7 = {}},
-	DEFAULT_NAMES = {set1 = "build1", set2 = "build2", set3 = "build3", set4 = "build4", set5 = "build5", set6 = "build6", set7 = "build7"},
-	Bank = {},
-	Names = {},
-	GLOBAL_BANK = "BuildBank",
-	GLOBAL_NAMES = "BuildBankNames"
-}
+BuildBank_DEFAULT_BANK = {set1 = {}, set2 = {}, set3 = {}, set4 = {}, set5 = {}, set6 = {}, set7 = {}};
+BuildBank_DEFAULT_NAMES = {set1 = "build1", set2 = "build2", set3 = "build3", set4 = "build4", set5 = "build5", set6 = "build6", set7 = "build7"}
+BuildBank_Bank = {};
+BuildBank_Names = {};
+BuildBank_GLOBAL_BANK = "BuildBank";
+BuildBank_GLOBAL_NAMES = "BuildBankNames";
 
-function OverhaulUI_SetResistances()
+local function OverhaulUI_SetResistances()
 	for i = 1, NUM_RESISTANCE_TYPES, 1 do
 		local resistanceLevel
 		local label = _G["OverhaulUIMagicResFrame"..i.."Label"];
@@ -67,7 +65,7 @@ function OverhaulUI_SetResistances()
 	end
 end
 
-function OverhaulUI_ReplaceInventoryStats()
+local function OverhaulUI_ReplaceInventoryStats()
 	if _G["CharFrameNewPart"] ~= nil then
 		local pvp = CharFrameNewPart.Frame1.TextFrame1.tooltip
 		local pve = CharFrameNewPart.Frame1.TextFrame2.tooltip
@@ -89,7 +87,7 @@ function OverhaulUI_ReplaceInventoryStats()
 	end
 end
 
-function OverhaulUI_ReplaceREFrames()
+local function OverhaulUI_ReplaceREFrames()
 	if _G["CharFrameNewPart_Enchants"] ~= nil then
 		_G["CharFrameNewPartFrame0"]:Hide()
 		_G["CharFrameNewPartFrame1"]:Hide()
@@ -102,7 +100,23 @@ function OverhaulUI_ReplaceREFrames()
 	end
 end
 
-function OverhaulUI_UpdateStats(self)
+local function BuildBank_UpdateFrames(id, value)
+	_G["BuildBankLoad" .. id .. "Frame"]:SetText(l .. value)
+	_G["BuildBankSave" .. id .. "Frame"]:SetText(s .. value)
+end
+
+local function BuildBankConfig()
+	BuildBank_Bank = LoadConfig(BuildBank_GLOBAL_BANK, BuildBank_DEFAULT_BANK)
+  BuildBank_Names = LoadConfig(BuildBank_GLOBAL_NAMES, BuildBank_DEFAULT_NAMES)
+  for i = 1, 7 do
+		local id = tostring(i)
+    BuildBank_UpdateFrames(id, BuildBank_Names["set" .. id])
+  end
+end
+
+local function OverhaulUI_UpdateStats(self)
+	BuildBankConfig()
+
 	for i = 1, 5 do -- set basic stats: str, agi, vit, int, spi
   	PaperDollFrame_SetStat(_G["AllStatsFrameStat" .. i], i)
 	end
@@ -163,13 +177,13 @@ function BuildBankSave(id)
     table.insert(t, item)
   end
 
-  BUILDBANK.Bank[id] = t
-  _G[BUILDBANK.GLOBAL_BANK] = BUILDBANK.Bank
+  BuildBank_Bank[id] = t
+  _G[BuildBank_GLOBAL_BANK] = BuildBank_Bank
 
-	UTILS.Console.Success(BUILDBANK.Names[id] .. " saved")
+	UTILS.Console.Success(BuildBank_Names[id] .. " saved")
 end
 
-function EquipItemFromBank(item, invslot)
+local function EquipItemFromBank(item, invslot)
 	if UTILS.Inventory.bank_opened then
 		for bank_tab = 0, NUM_BANKBAGSLOTS do
 			for slot = 1, UTILS.Inventory.GetBankNumSlots(bank_tab) do
@@ -183,7 +197,7 @@ function EquipItemFromBank(item, invslot)
 end
 
 function BuildBankLoad(st)
-	if BUILDBANK.Bank[st] == nil then
+	if BuildBank_Bank[st] == nil then
 		UTILS.Console.Warning("Items not equipped. Reason: Set does not exist")
 		return 
 	end
@@ -194,7 +208,7 @@ function BuildBankLoad(st)
 
   for i = 1, 19 do
     local current = GetInventoryItemLink("player", i)
-    local equip = BUILDBANK.Bank[st][i]
+    local equip = BuildBank_Bank[st][i]
     if equip ~= "not found" and equip ~= current then
 			if GetItemCount(equip, false, false) > 0 then -- if in bag
         EquipItemByName(equip, i)
@@ -231,21 +245,16 @@ function BuildBankUnequipAll()
 	end
 end
 
-function BUILDBANK:UpdateFrames(id, value)
-	_G["BuildBankLoad" .. id .. "Frame"]:SetText(l .. value)
-	_G["BuildBankSave" .. id .. "Frame"]:SetText(s .. value)
-end
-
-function BUILDBANK:BuildBankCommands(msg, editbox)
+local function BuildBankCommands(msg, editbox)
   local _, _, id, value = LoadCommand(msg)
 
 	id = tonumber(id)
 
   if (id ~= nil) and (value ~= nil) then
 		if id >= 1 and id <= 7 then
-			BUILDBANK:UpdateFrames(id, value)
-			BUILDBANK.Names["set" .. id] = value
-			_G[BUILDBANK.GLOBAL_NAMES] = BUILDBANK.Names
+			BuildBank_Names["set" .. id] = value
+			BuildBankConfig()
+			_G[BuildBank_GLOBAL_NAMES] = BuildBank_Names
 			return
 		end
   end
@@ -254,17 +263,10 @@ function BUILDBANK:BuildBankCommands(msg, editbox)
 	UTILS.Console.Info("Syntax: /bb (1-7) newName");
 end
 
+function BuildBank_OnLoad()
+	UTILS.Console.Primary("BuildBank loaded")
+end
+
 SLASH_BUILDBANK1 = '/buildbank'
 SLASH_BUILDBANK2 = '/bb'
-SlashCmdList["BUILDBANK"] = BUILDBANK.BuildBankCommands
-
-function BUILDBANK:BuildBank_OnLoad()
-	UTILS.Console.Primary("BuildBank loaded")
-  BUILDBANK.BuildBank = LoadConfig(BUILDBANK.GLOBAL_BANK, BUILDBANK.DEFAULT_BANK)
-  BUILDBANK.Names = LoadConfig(BUILDBANK.GLOBAL_NAMES, BUILDBANK.DEFAULT_NAMES)
-
-  for i = 1, 7 do
-		local id = tostring(i)
-    BUILDBANK:UpdateFrames(id, BUILDBANK.Names["set" .. id])
-  end
-end
+SlashCmdList["BUILDBANK"] = BuildBankCommands

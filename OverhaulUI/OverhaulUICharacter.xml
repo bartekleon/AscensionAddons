@@ -793,7 +793,7 @@
     <Scripts>
 			<OnLoad>
         OverhaulUICharacter_OnLoad()
-        BUILDBANK.BuildBank_OnLoad()
+        BuildBank_OnLoad()
       </OnLoad>
     </Scripts>
   </Frame>
